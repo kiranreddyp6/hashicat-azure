@@ -1,6 +1,3 @@
-provider "azurerm" {
-  features {}
-}
 module "network" {
   source              = "Azure/network/azurerm"
   resource_group_name = azurerm_resource_group.myresourcegroup.name
@@ -9,7 +6,7 @@ module "network" {
   subnet_names        = ["subnet1", "subnet2", "subnet3"]
 
   subnet_service_endpoints = {
-    "subnet1" : ["Microsoft.Sql"], 
+    "subnet1" : ["Microsoft.Sql"],
     "subnet2" : ["Microsoft.Sql"],
     "subnet3" : ["Microsoft.Sql"]
   }
@@ -19,5 +16,5 @@ module "network" {
     costcenter  = "it"
   }
 
-  depends_on = [azurerm_resource_group.myresourcegroup.name]
+  depends_on = [azurerm_resource_group.myresourcegroup]
 }
